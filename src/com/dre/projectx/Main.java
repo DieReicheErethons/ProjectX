@@ -14,7 +14,6 @@ import com.dre.projectx.net.NetClient;
 public class Main extends BasicGame{
 	public static Main m;
 
-
 	//Network
 	public NetClient netClient;
 
