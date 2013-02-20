@@ -3,21 +3,18 @@ package com.dre.projectx.contents;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 public class Player {
 	public static Set<Player> players = new HashSet<Player>();
-	public static Player me;
 
 	private int id;
 	private String name;
 	private Image image;
-	private int x = 300, y = 300;
-
-	//Only me variables
-	public Set<Player> visiblePlayers = new HashSet<Player>();
+	private float x = 300, y = 300;
 
 	public Player(String name){
 		players.add(this);
@@ -29,25 +26,19 @@ public class Player {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-
-		x = (int) Math.floor((Math.random() * 400) + 1);
-
-		if(me!=null){
-			me.visiblePlayers.add(this);
-		}
 	}
 
 	//Static methods
-	public static void update(){
+	public static void update(GameContainer gc, int delta){
 
 	}
 
 	public static void render(Graphics g){
 		for(Player player : players){
-			if(me.visiblePlayers.contains(player)){
+			//if(OwnPlayer.player.visiblePlayers.contains(player)){
 				player.image.draw(player.x, player.y);
 				g.drawString(player.name, player.x, player.y-20);
-			}
+			//}
 		}
 	}
 
@@ -78,5 +69,17 @@ public class Player {
 
 	public String getName(){
 		return this.name;
+	}
+
+	public void setX(float x){
+		this.x = x;
+	}
+
+	public void setY(float y){
+		this.y = y;
+	}
+
+	public Image getImage() {
+		return this.image;
 	}
 }

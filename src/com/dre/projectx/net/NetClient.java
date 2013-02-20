@@ -2,14 +2,14 @@ package com.dre.projectx.net;
 
 import java.io.IOException;
 
-import com.dre.projectx.contents.Player;
+import com.dre.projectx.contents.OwnPlayer;
 import com.dre.projectx.net.packages.PlayerLoginPackage;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
 public class NetClient {
 
-	private Client client;
+	public static Client client;
 
 	public NetClient(){
 		client = new Client();
@@ -30,7 +30,7 @@ public class NetClient {
 
 		// Send Login
 		PlayerLoginPackage playerLogin = new PlayerLoginPackage();
-		playerLogin.name = Player.me.getName();
-		client.sendTCP(playerLogin);
+		playerLogin.name = OwnPlayer.player.getName();
+		playerLogin.sendTCP();
 	}
 }

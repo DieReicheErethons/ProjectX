@@ -8,6 +8,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
 
+import com.dre.projectx.contents.OwnPlayer;
 import com.dre.projectx.contents.Player;
 import com.dre.projectx.net.NetClient;
 
@@ -27,8 +28,7 @@ public class Main extends BasicGame{
 	@Override
 	public void init(GameContainer gc) throws SlickException {
 		//Create main player
-		Player.me = new Player("Ich"+(int) Math.floor((Math.random() * 400) + 1));
-		Player.me.visiblePlayers.add(Player.me);
+		new OwnPlayer("Ich"+(int) Math.floor((Math.random() * 400) + 1));
 
 		//Network
 		this.netClient = new NetClient();
@@ -36,11 +36,13 @@ public class Main extends BasicGame{
 
 	@Override
 	public void update(GameContainer gc, int delta) throws SlickException {
-		Player.update();
+		Player.update(gc, delta);
+		OwnPlayer.update(gc, delta);
 	}
 
 	public void render(GameContainer gc, Graphics g) throws SlickException {
 		Player.render(g);
+		OwnPlayer.render(g);
 	}
 
 	public static void main(String[] args) throws SlickException {

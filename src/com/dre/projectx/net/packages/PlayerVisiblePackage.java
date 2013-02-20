@@ -7,7 +7,7 @@ public class PlayerVisiblePackage extends NetPackage{
 	public boolean visible;
 
 	@Override
-	public void onRecieve(Connection connection, Object object) {
+	public void onRecieve(Connection connection) {
 		// TODO Auto-generated method stub
 
 	}
