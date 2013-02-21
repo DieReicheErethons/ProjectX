@@ -3,20 +3,28 @@ package com.dre.projectx.net;
 import java.io.IOException;
 
 import com.dre.projectx.contents.OwnPlayer;
+import com.dre.projectx.net.packages.PlayerDisconnectPackage;
 import com.dre.projectx.net.packages.PlayerLoginPackage;
+import com.dre.projectx.net.packages.PlayerNewPackage;
+import com.dre.projectx.net.packages.PlayerPositionPackage;
+import com.dre.projectx.net.packages.PlayerVisiblePackage;
+import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.kryonet.EndPoint;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 
 public class NetClient {
 
 	public static Client client;
 
+	public static Kryo kryo;
+
 	public NetClient(){
 		client = new Client();
 		client.start();
 
 		// Register the classes that will be sent over the network.
-		Network.register(client);
+		registerKyroClasses(client);
 
 		// Add NetListener
 		client.addListener(new ThreadedListener(new NetListener()));
@@ -32,5 +40,20 @@ public class NetClient {
 		PlayerLoginPackage playerLogin = new PlayerLoginPackage();
 		playerLogin.name = OwnPlayer.player.getName();
 		playerLogin.sendTCP();
+	}
+
+
+	//Kyro
+	public static void registerKyroClasses (EndPoint endPoint) {
+		kryo = endPoint.getKryo();
+
+		//Initialize kryo classes
+		kryo.register(PlayerLoginPackage.class);
+		kryo.register(PlayerPositionPackage.class);
+		kryo.register(PlayerVisiblePackage.class);
+		kryo.register(PlayerNewPackage.class);
+		kryo.register(PlayerDisconnectPackage.class);
+
+		//TODO: Automatisieren
 	}
 }
