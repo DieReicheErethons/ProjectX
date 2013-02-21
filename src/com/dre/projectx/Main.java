@@ -41,8 +41,8 @@ public class Main extends BasicGame{
 	}
 
 	public void render(GameContainer gc, Graphics g) throws SlickException {
-		Player.render(g);
-		OwnPlayer.render(g);
+		Player.render(gc,g);
+		OwnPlayer.render(gc,g);
 	}
 
 	public static void main(String[] args) throws SlickException {

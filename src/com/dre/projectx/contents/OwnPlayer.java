@@ -72,9 +72,9 @@ public class OwnPlayer{
         }
 	}
 
-	public static void render(Graphics g){
-		player.image.draw(player.x, player.y);
-		g.drawString(player.name, player.x, player.y-20);
+	public static void render(GameContainer gc, Graphics g){
+		player.image.draw(gc.getWidth()/2 - player.image.getWidth()/2, gc.getHeight()/2 - player.image.getHeight()/2);
+		g.drawString(player.name, gc.getWidth()/2 - player.image.getWidth()/2, gc.getHeight()/2 - player.image.getHeight()/2 - 20);
 	}
 
 	//Getter and Setter
@@ -94,8 +94,16 @@ public class OwnPlayer{
 		this.x = x;
 	}
 
+	public float getX(){
+		return this.x;
+	}
+
 	public void setY(float y){
 		this.y = y;
+	}
+
+	public float getY(){
+		return this.y;
 	}
 
 	public void setRotation(float angle) {

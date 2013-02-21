@@ -33,13 +33,19 @@ public class Player {
 
 	}
 
-	public static void render(Graphics g){
+	public static void render(GameContainer gc, Graphics g){
 		for(Player player : players){
-			//if(OwnPlayer.player.visiblePlayers.contains(player)){
-				player.image.draw(player.x, player.y);
-				g.drawString(player.name, player.x, player.y-20);
-			//}
+			float drawX = gc.getWidth() / 2 - OwnPlayer.player.getX() + player.x - player.image.getWidth() / 2;
+			float drawY = gc.getHeight() / 2 - OwnPlayer.player.getY() + player.y - player.image.getHeight() / 2;
+
+			player.image.draw(drawX, drawY);
+			g.drawString(player.name, drawX, drawY-20);
+			g.drawString("Id:"+player.id, drawX, drawY-40);
 		}
+	}
+
+	public void remove() {
+		players.remove(this);
 	}
 
 	public static Player get(String name){
