@@ -24,7 +24,7 @@ public class NetClient {
 		client.start();
 
 		// Register the classes that will be sent over the network.
-		registerKyroClasses(client);
+		registerKryoClasses(client);
 
 		// Add NetListener
 		client.addListener(new ThreadedListener(new NetListener()));
@@ -43,8 +43,8 @@ public class NetClient {
 	}
 
 
-	//Kyro
-	public static void registerKyroClasses (EndPoint endPoint) {
+	//Kryo
+	public static void registerKryoClasses (EndPoint endPoint) {
 		kryo = endPoint.getKryo();
 
 		//Initialize kryo classes
