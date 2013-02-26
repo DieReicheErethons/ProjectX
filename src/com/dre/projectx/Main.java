@@ -85,7 +85,6 @@ public class Main extends BasicGame{
 
 		if(name == null){
 			JOptionPane.showMessageDialog(null, "'Name' parameter not found!");
-			this.app.destroy();
 			return false;
 		}
 
